@@ -1,0 +1,32 @@
+class BullsAndCows {
+    public String getHint(String secret, String guess) {
+        Map<Character, Integer> map = new HashMap<>();
+        int bulls = 0;
+        int cows = 0;
+        
+        for (int i = 0; i < secret.length(); i++) {
+            char c = secret.charAt(i);
+            int count = map.getOrDefault(c, 0);
+            if (c == guess.charAt(i)) {        
+                bulls++;
+            } else {
+                count++;
+            }
+            map.put(c, count);
+        }
+        
+        for (int i = 0; i < guess.length(); i++ ) {
+            Character c = guess.charAt(i);
+            if (c != secret.charAt(i) && map.containsKey(c)) {           
+                int count = map.get(c);
+                if (count > 0) {
+                    cows++;
+                    map.put(c, count-1);
+                }
+            }    
+        }
+        
+        return ""  + bulls + "A" + cows + "B";
+         
+    }
+}
