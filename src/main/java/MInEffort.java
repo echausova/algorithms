@@ -29,23 +29,23 @@ public class MInEffort {
 
 
             if (i - 1 >= 0 && !visited[i - 1][j]) {
-                updateDiff(minDist, heights, pq, visited, i - 1, j, i, j);
+                updateDiff(minDist, heights, pq, i - 1, j, i, j);
             }
             if (i + 1 < heights.length && !visited[i + 1][j]) {
-                updateDiff(minDist, heights, pq, visited, i + 1, j, i, j);
+                updateDiff(minDist, heights, pq, i + 1, j, i, j);
             }
             if (j - 1 >= 0 && !visited[i][j - 1]) {
-                updateDiff(minDist, heights, pq, visited, i, j - 1, i, j);
+                updateDiff(minDist, heights, pq, i, j - 1, i, j);
             }
             if (j + 1 < heights[0].length && !visited[i][j + 1]) {
-                updateDiff(minDist, heights, pq, visited, i, j + 1, i, j);
+                updateDiff(minDist, heights, pq, i, j + 1, i, j);
             }
         }
 
         return minDist[heights.length - 1][heights[0].length - 1];
     }
 
-    private void updateDiff(int[][] minDist, int[][] heights, PriorityQueue<int[]> pq, boolean[][] visited, int i, int j, int curI, int curJ) {
+    private void updateDiff(int[][] minDist, int[][] heights, PriorityQueue<int[]> pq, int i, int j, int curI, int curJ) {
         int currDiff = Math.abs(heights[curI][curJ] - heights[i][j]);
         int diff = Math.max(minDist[curI][curJ], currDiff);
         if (minDist[i][j] > diff) {
