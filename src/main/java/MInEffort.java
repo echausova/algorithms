@@ -3,7 +3,7 @@ import java.util.PriorityQueue;
 
 public class MInEffort {
     public int minimumEffortPath(int[][] heights) {
-        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(Comparator.comparingInt(o -> o[2]));
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[2]));
         boolean[][] visited = new boolean[heights.length][heights[0].length];
         int[][] minDist = new int[heights.length][heights[0].length];
 
@@ -46,9 +46,6 @@ public class MInEffort {
     }
 
     private void updateDiff(int[][] minDist, int[][] heights, PriorityQueue<int[]> pq, boolean[][] visited, int i, int j, int curI, int curJ) {
-        if (visited[i][j]) {
-            return;
-        }
         int currDiff = Math.abs(heights[curI][curJ] - heights[i][j]);
         int diff = Math.max(minDist[curI][curJ], currDiff);
         if (minDist[i][j] > diff) {
